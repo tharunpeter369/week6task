@@ -1,0 +1,50 @@
+<div>
+    <section>
+    <div class="">
+        <div class="row">
+            <nav class="navbar navbar-light bg-light justify-content-between">
+                <div class="container-fluid">
+                    <a class="navbar-brand">
+                    {{#if user}}
+                    <h3>Tharun Peter</h3>
+                    {{else}}
+                    Messages
+                    {{/if}}
+                    </a>
+                    <div>
+                     <button class="btn btn-outline-info my-2 my-sm-0" onclick="window.location.href='/home'" type="submit">Home</button>  
+
+                    </div>
+                       
+                </div>
+            </nav>
+        </div>
+    </div>
+</section>
+
+
+<div class="container">
+  <table class="table text-white">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Message</th>
+      </tr>
+          <tbody>
+        {{#each result}}
+      <tr>
+        <td>{{this.fname}}</td>
+        <td>{{this.email}}</td>
+        <td>{{this.subject}}</td>
+        <td>{{this.message}}</td>
+        <td><button class="btn btn-outline-warning my-2 my-sm-0" onclick="window.location.href='/home'" type="submit">Reply</button>  </td>
+        <td><button class="btn btn-outline-danger my-2 my-sm-0" onclick="window.location.href='/delete/{{this._id}}'" type="submit">Delete</button>  </td>
+      </tr>>
+       {{/each}}
+    </tbody>
+    </thead>
+
+  </table>
+</div>

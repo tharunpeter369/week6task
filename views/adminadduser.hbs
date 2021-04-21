@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+    <title>login-form - Bootsnipp.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+  margin: 0;
+  padding: 0;
+  background-color: #17a2b8;
+  height: 100vh;
+}
+#login .container #login-row #login-column #login-box {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 520px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+}
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<body>
+    <div id="login">
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="form" class="form" name="form" action="/admin/submitadduser/" method="post">
+                            <h3 class="text-center text-info">ADD USER</h3>
+                            <div class="form-group">
+                                <label for="username" class="text-info">Username:</label><br>
+                                <input type="text" name="name" id="name" class="form-control" required oninput="nameValid()">
+                                <span id="nameReq" class="nameValid"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="username" class="text-info">Email:</label><br>
+                                <input type="email" name="email" id="email" class="form-control" required oninput="emailValid()" >
+                                <span id="emailErr" class="nameValid"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-info">Password:</label><br>
+                                <input type="text" name="pass" id="pass" class="form-control" required oninput="passValid()">
+                                <span id="passLen" class="nameValid"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"  class="text-info">Confirm Password:</label><br>
+                                <input type="text" name="repass" id="repass" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                {{!-- <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br> --}}
+                                <input type="submit" class="btn btn-info btn-md" value="submit" onclick="matchPassword()">
+                            </div>
+                                {{#if auth}}
+                                {{!-- <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label> --}}
+                                <span class=" " style="color:red;" id="invalid">User already Existed</span>
+                                {{/if}}
+                            {{!-- <div id="register-link" class="text-right">
+                                <a href="#" class="text-info">Register here</a>
+                            </div> --}}
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+     <script>
+           setTimeout(function() {
+     document.getElementById("invalid").innerHTML= ""; 
+     }, 4000);  
+   
+
+
+                                                        
+                            function passValid() {
+                                var text = document.getElementById("pass").value;
+                                console.log("sdjsdjsi");
+                                var letters = /^[a-zA-Z\s]*$/;
+                            
+                            
+                            if (text.length == 0) {
+                                // document.getElementById("nameLen").style.display = "block";
+                                document.getElementById("passLen").innerHTML= "required "; 
+                                
+                                // document.getElementById("nameErr").style.display = "none";
+                                }else if(text.length<3){
+                                
+                                document.getElementById("passLen").innerHTML= "Minimum Length required"; 
+                            
+                                } else {
+                                
+                                document.getElementById("passLen").innerHTML= " "; 
+                                
+                                }
+                            }
+
+
+
+                            function matchPassword() {  
+                                var pw1 = document.getElementById("pass").value;  
+                                // console.log(pw1)
+                                var pw2 = document.getElementById("repass").value;  
+                                // console.log(pw1)
+                                if(pw1 == "" && pw2 == ""){
+                                    alert('field required')
+                                }else{
+                                      if(pw1 != pw2)  
+                               {    
+                                alert("Passwords did not match");  
+                                }  
+                                }
+                             } 
+
+                            
+                            function emailValid() {
+                                var text = document.getElementById("email").value;
+                                var letters = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+                            
+                                if (text == "") {
+                                document.getElementById("emailErr").innerHTML = " required";
+                                //   document.getElementById("nameLen").style.display = "none";
+                                //   document.getElementById("nameErr").style.display = "none";
+                                } 
+                                else if (!text.match(letters)) {
+                                document.getElementById("emailErr").innerHTML = "Valid email required";
+                            
+                                // document.getElementById("emailErr").style.display = "block";
+                                // document.getElementById("emailReq").style.display = "none";
+                                //   document.getElementById("nameLen").style.display = "none";
+                            
+                                }
+                                else {
+                                document.getElementById("emailErr").innerHTML = " ";
+                                //   document.getElementById("nameErr").style.display = "none";
+                            
+                                }
+                            }
+                            
+                            
+                            
+                            
+                            function nameValid() {
+                                var text = document.getElementById("name").value;
+                                var letters = /^[a-zA-Z\s]*$/;
+                            if (text.length == 0) {
+                                // document.getElementById("nameLen").style.display = "block";
+                                document.getElementById("nameReq").innerHTML= "required "; 
+                                
+                                // document.getElementById("nameErr").style.display = "none";
+                                }else if(text.length<3){
+
+                                document.getElementById("nameReq").innerHTML= "Minimum Length required"; 
+                            
+                                }else if(!text.match(letters)){
+                                
+                                document.getElementById("nameErr").innerHTML= "Only letters are allowed"; 
+                            
+                                } else {
+                                
+                                document.getElementById("nameReq").innerHTML= " "; 
+                                document.getElementById("nameErr").innerHTML= " "; 
+                                
+                                }
+                            }
+
+
+                             document.form.addEventListener("submit", function (event) {
+                                 console.log('wow')
+                                var email = this.querySelector("input[id=email]").value; 
+                                var name = this.querySelector("input[id=name]").value;
+                                var pass = this.querySelector("input[id=pass]").value;
+                                var pass2 = this.querySelector("input[id=repass]").value;
+                                var regx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                                if (email.trim() == "" || !email.match(regx)) {
+                                document.getElementById("email").focus();
+                                event.preventDefault();
+                                }else if (name.trim() == "" || name.length < 3) {
+                                document.getElementById("name").focus();
+                                event.preventDefault();
+                                }else if (pass.trim() == "" || pass.length < 3) {
+                                document.getElementById("pass").focus();
+                                event.preventDefault();
+                                } else if (pass.trim() != pass2.trim()) {
+                                document.getElementById("repass").focus();
+                                event.preventDefault();
+                                }
+                            });
+  
+  
+ </script>
+
+</body>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
+
+
+                            {{!-- document.login-form.addEventListener("submit", function (event) {
+                            var pass = this.querySelector("input[id=pass]").value;
+                            var pass2 = this.querySelector("input[id=repass]").value;
+
+                            if (pass.trim() == "" || pass.length < 3) {
+                            document.getElementById("pass").focus();
+                            event.preventDefault();
+                            } else if (pass.trim() != pass2.trim()) {
+                            document.getElementById("repass").focus();
+                            event.preventDefault();
+                                }
+                            }); --}}

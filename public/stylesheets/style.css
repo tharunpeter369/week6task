@@ -1,0 +1,52 @@
+/* body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+} */
+
+
+
+
+body {
+ 
+  background-color: rgb(70, 55, 72);
+  /* background-image: "https://cache.techmahindra.com/static/img/hi-tech-enterprise-smart-assistant.jpg"; */
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+.emailValid{
+  /* display: none; */
+  color: rgb(73, 29, 29);
+  padding: .5rem;
+  
+}
+
+.formValid{
+  /* display: none; */
+  color: rgb(73, 29, 29);
+  padding: .5rem;
+  
+}
+
+
+.zoom {
+  
+  
+  transition: transform .2s;
+ 
+  ;
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1); 
+}
+

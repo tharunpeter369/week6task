@@ -1,0 +1,50 @@
+{{!-- <h1>{{title}}</h1>
+<p>Welcome to {{title}}</p> --}}
+<div>
+    <section>
+    <div class="">
+        <div class="row">
+            <nav class="navbar navbar-light bg-light justify-content-between">
+                <div class="container-fluid">
+                    <a class="navbar-brand">
+                    {{#if title}}
+                    <h3>user :  {{title}}</h3>
+                    {{else}}
+                    Unkwoun user
+                    {{/if}}
+                    </a>
+                    <div>
+                     {{!-- <button class="btn btn-outline-info my-2 my-sm-0 " onclick="window.location.href='/database'" type="submit">Messages</button>  --}}
+                     <button class="btn btn-outline-danger my-2 my-sm-0" onclick="window.location.href='/home/logout'" type="submit">Logout</button>  
+                    </div>      
+                </div>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="" style="">
+            <div class="row p-5 text-center col-md-12  d-flex justify-content-center">
+                    {{#each cont}}
+                    <div class="card m-3" style="width: 18rem;">
+                    <img class="card-img-top pt-2 zoom" src="{{this.pic}}" alt="Card image cap">
+                    <div class="card-body">
+                    <p class="card-text"><h3>{{this.name}}</h3></p>
+                    </div>
+                    </div>
+                    {{/each}} 
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+
+
+
+
+
+
+

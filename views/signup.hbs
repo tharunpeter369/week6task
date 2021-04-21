@@ -1,0 +1,250 @@
+
+ <div class="main">
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" action="/signup" class="register-form" id="registerform" name="registerform">
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="name" id="name" placeholder="Your Name" required oninput="nameValid()"/>
+                                <span id="nameReq" class="nameValid"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email" required oninput="emailValid()"/>
+                                <span id="emailErr" class="nameValid"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pass" id="pass" required placeholder="Password" oninput="passValid()"/>
+                                <span id="passLen" class="nameValid"></span>
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="repass" id="repass" required placeholder="Repeat your password" />
+                                
+                            </div>
+                            {{!-- <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            </div> --}}
+                                {{#if auth}}
+                                {{!-- <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label> --}}
+                                <span class=" " style="color:red;" id="invalid">User already Existed</span>
+                                {{/if}}
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register" onclick="matchPassword()"/>
+                            </div>
+               
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="/loginasset/images/signup-image.jpg" alt="sing up image"></figure>
+                        <a href="/" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            
+        </script>
+
+        
+
+
+
+
+
+    {{!-- document.registerform.addEventListener("submit", function (event) {
+
+    var user = this.querySelector("input[id=name]").value;
+    var pass = this.querySelector("input[id=pass]").value;
+    var pass2 = this.querySelector("input[id=repass]").value;
+
+    if (pass.trim() == "" || pass.length < 3) {
+      document.getElementById("pass").focus();
+      event.preventDefault();
+    } else if (pass.trim() != pass2.trim()) {
+      document.getElementById("repass").focus();
+      event.preventDefault();
+    }
+
+  }); --}}
+
+
+<script>
+ document.registerform.addEventListener("submit", function (event) {
+    var email = this.querySelector("input[id=email]").value; 
+    var name = this.querySelector("input[id=name]").value;
+    var pass = this.querySelector("input[id=pass]").value;
+    var pass2 = this.querySelector("input[id=repass]").value;
+     var regx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (email.trim() == "" || !email.match(regx)) {
+      document.getElementById("email").focus();
+      event.preventDefault();
+    }else if (name.trim() == "" || name.length < 3) {
+      document.getElementById("name").focus();
+      event.preventDefault();
+    }else if (pass.trim() == "" || pass.length < 3) {
+      document.getElementById("pass").focus();
+      event.preventDefault();
+    } else if (pass.trim() != pass2.trim()) {
+      document.getElementById("repass").focus();
+      event.preventDefault();
+    }
+  });
+
+  
+  
+    setTimeout(function() {
+     document.getElementById("invalid").innerHTML= ""; 
+    }, 4000);  
+
+
+    function passValid() {
+    var text = document.getElementById("pass").value;
+    var letters = /^[a-zA-Z\s]*$/;
+   if (text.length == 0) {
+      // document.getElementById("nameLen").style.display = "block";
+      document.getElementById("passLen").innerHTML= "required "; 
+      
+      // document.getElementById("nameErr").style.display = "none";
+    }else if(text.length<3){
+      document.getElementById("passLen").innerHTML= "Minimum Length required"; 
+    } else {
+    
+      document.getElementById("passLen").innerHTML= " "; 
+      
+    }
+   }
+
+
+
+
+  
+                            function matchPassword() {  
+                                var pw1 = document.getElementById("pass").value;  
+                                // console.log(pw1)
+                                var pw2 = document.getElementById("repass").value;  
+                                // console.log(pw1)
+                                if(pw1 == "" && pw2 == ""){
+                                    alert('field required')
+                                }else{
+                                      if(pw1 != pw2)  
+                               {    
+                                alert("Passwords did not match");  
+                                }  
+                                }
+                             } 
+
+
+
+
+  
+
+  
+  function emailValid() {
+    var text = document.getElementById("email").value;
+    var letters = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+  
+    if (text == "") {
+      document.getElementById("emailErr").innerHTML = " required";
+    //   document.getElementById("nameLen").style.display = "none";
+    //   document.getElementById("nameErr").style.display = "none";
+    } 
+    else if (!text.match(letters)) {
+      document.getElementById("emailErr").innerHTML = "Valid email required";
+  
+      // document.getElementById("emailErr").style.display = "block";
+      // document.getElementById("emailReq").style.display = "none";
+    //   document.getElementById("nameLen").style.display = "none";
+  
+    }
+    else {
+      document.getElementById("emailErr").innerHTML = " ";
+    //   document.getElementById("nameErr").style.display = "none";
+  
+    }
+  }
+  
+  
+  
+  
+  function nameValid() {
+    var text = document.getElementById("name").value;
+    var letters = /^[a-zA-Z\s]*$/;
+   if (text.length == 0) {
+      // document.getElementById("nameLen").style.display = "block";
+      document.getElementById("nameReq").innerHTML= "required "; 
+      
+      // document.getElementById("nameErr").style.display = "none";
+    }else if(text.length<3){
+
+      document.getElementById("nameReq").innerHTML= "Minimum Length required"; 
+  
+    }else if(!text.match(letters)){
+     
+      document.getElementById("nameErr").innerHTML= "Only letters are allowed"; 
+  
+    } else {
+    
+      document.getElementById("nameReq").innerHTML= " "; 
+      document.getElementById("nameErr").innerHTML= " "; 
+      
+    }
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+{{!-- <script>
+    document.registerform.addEventListener("submit", function (event) {
+
+    var user = this.querySelector("input[id=name]").value; 
+    var pass = this.querySelector("input[id=pass]").value;
+    var pass2 = this.querySelector("input[id=repass]").value;
+
+     var regx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+
+    if (user.trim() == "" || !user.match(regx)) {
+      document.getElementById("name").focus();
+      event.preventDefault();
+    } else if (pass.trim() == "" || pass.length < 3) {
+      document.getElementById("pass").focus();
+      event.preventDefault();
+    } else if (pass.trim() != pass2.trim()) {
+      document.getElementById("re_pass").focus();
+      event.preventDefault();
+
+    }
+  });
+</script> --}}
+       
+
+       
+   {{!-- function matchPassword() {  
+    var pw1 = document.getElementById("pass").value;  
+    // console.log(pw1)
+    var pw2 = document.getElementById("repass").value;  
+    // console.log(pw1)
+    if(pw1 == pw2)  
+    {     
+      alert("Passwords match");  
+    } else {    
+      alert("Passwords did not match");  
+    }  
+  }   --}}
